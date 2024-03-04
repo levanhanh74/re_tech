@@ -25,7 +25,12 @@ class HomeClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('register');
+    }
+    
+    public function createLogin()
+    {
+        return view('login');
     }
 
     /**

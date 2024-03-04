@@ -24,6 +24,10 @@ use Illuminate\Support\Facades\Route;
 */
 // Client
 route::get('/', [HomeClientController::class, 'index'])->name('home');
+route::get('/register', [HomeClientController::class, 'create'])->name('register');
+route::get('/login', [HomeClientController::class, 'createLogin'])->name('login');
+
+
 route::get('/detailPrd', [ProductClientController::class, 'index'])->name('detailPrd');
 route::get('/cartPrd', [CartClientController::class, 'index'])->name('cartPrd');
 route::get('/statusOrder', [CartClientController::class, 'indexStatusOrders'])->name('indexStatusOrders');

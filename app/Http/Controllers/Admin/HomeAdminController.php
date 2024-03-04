@@ -24,7 +24,7 @@ class HomeAdminController extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**
