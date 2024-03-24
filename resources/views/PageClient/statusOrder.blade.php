@@ -7,10 +7,14 @@
         <div class="row row-cols-2 ">
             {{-- begin navbar --}}
             <div class="col-3 bg-primary">
-                <nav class="nav flex-column bg-primary">
-                    <a class="nav-link text-white" aria-current="page" href="#">Active</a>
-                    <a class="nav-link text-white" href="#">Link</a>
-                    <a class="nav-link text-white" href="#">Link</a>
+                <nav class="nav flex-column bg-primary p-3">
+                    <h4 class="nav-link text-white p-0" aria-current="page">Danh mục</h4>
+                    @if (isset($cateAll))
+                        @foreach ($cateAll as $item)
+                            <a class="nav-link text-white"
+                                href="{{ route('client.categoryJoin', ['id' => $item->id]) }}">{{ $item->name }}</a>
+                        @endforeach
+                    @endif
                 </nav>
             </div>
             {{-- end navbar --}}
@@ -69,7 +73,7 @@
                                 Cám ơn Quý khách đã sử dụng Sản phẩm của Công ty chúng Tôi!</p>
                         </div>
                         <div class="text-end">
-                            <a href="">Quay lại  trang chủ</a>
+                            <a href="{{ route('home') }}">Quay lại trang chủ</a>
                         </div>
                     </div>
                 </div>

@@ -19,21 +19,22 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('address');
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->default(1);
             $table->string('name_product');
             $table->integer('price_product');
             $table->bigInteger('quality_product');
             $table->string('image_product');
             $table->integer('total_product');
-           
+            $table->text('array_item');
+
             $table->integer('id_user')->unsigned();
             $table->integer('id_product')->unsigned();
-            
+
             $table->foreign('id_user')
-            ->references('id')
-            ->on('tb_users')->onDelete('cascade');
+                ->references('id')
+                ->on('tb_users')->onDelete('cascade');
             $table->foreign('id_product')->references('id')
-            ->on('tb_product')->onDelete('cascade');
+                ->on('tb_product')->onDelete('cascade');
 
             $table->timestamps();
         });

@@ -5,20 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class tb_product extends Model
+class Comment extends Model
 {
     use HasFactory;
+    protected $table = 'tb_comment';
     protected $fillable = [
-        'name',
-        'price',
-        'warranty',
-        'image',
-        'accessories',
-        'condition',
-        'status',
-        'promotion',
-        'description',
-        'feature',
+        'email', 'name', 'comments', 'id_product_comment',
     ];
     protected $hidden = [
         'created_at',

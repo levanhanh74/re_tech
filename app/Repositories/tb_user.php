@@ -7,7 +7,7 @@ use App\Models\tb_user;
 class tb_users
 {
     protected $tb_user;
-    
+
     public function __construct(tb_user $user)
     {
         $this->tb_user = $user;
@@ -20,29 +20,26 @@ class tb_users
 
     public function getById($id)
     {
-        return $this->tb_user->where('id', $id)->get();
+        return $this->tb_user->findOrFail($id);
     }
 
     public function save($data)
     {
-        $post = new $this->tb_user;
-        $post = $data;
-        $post->save();
-        return $post->fresh();
+
+        return $this->tb_user->create($data);
     }
 
     public function update($id, $data)
     {
-        $post = $this->tb_user->find($id);
-        $post = $data;
-        $post->update();
-        return $post;
+        $user = $this->getById($id);
+        $user->update($data);
+        return $user;
     }
 
     public function delete($id)
     {
-        $post  = $this->tb_user->find($id);
-        $post->delete();
-        return $post;
+        $user  = $this->getById($id);
+        $user->delete();
+        return $user;
     }
 }

@@ -3,10 +3,23 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Services\TB_CATEGORY_SERVICE;
+use App\Http\Services\TB_PRODUCT_SERVICE;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartClientController extends Controller
 {
+    protected $category;
+    protected $product;
+    protected $user;
+    public function __construct(TB_CATEGORY_SERVICE $category, TB_PRODUCT_SERVICE $product)
+    {
+        $this->middleware("AuthClient");
+        $this->category = $category;
+        $this->product = $product;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,11 +27,14 @@ class CartClientController extends Controller
      */
     public function index()
     {
-        return view('cartProduct');
+        $getAllCart = \Cart::getContent();
+        $cateAll = $this->category->getAll();
+        return view('PageClient.cartProduct', compact('getAllCart', 'cateAll'));
     }
     public function indexStatusOrders()
     {
-        return view('statusOrder');
+        $cateAll = $this->category->getAll();
+        return view('PageClient.statusOrder', compact('cateAll'));
     }
 
     /**
@@ -26,9 +42,33 @@ class CartClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        //
+        $cateAll = $this->category->getAll();
+        $getByIdPrd = $this->product->getById($id);
+        $getAllCart = \Cart::getContent();
+        $userId = Auth::user();
+        \Cart::add([
+            'id' => $id, // inique row ID
+            'name' => $getByIdPrd->name,
+            'price' => $getByIdPrd->price,
+            'quantity' => 1,
+            'associatedModel' => [$getByIdPrd]
+        ]);
+        return redirect()->route("client.cart", compact('cateAll', 'getAllCart'));
+    }
+    public function createCart($id)
+    {
+        $userId = Auth::user();
+        $getByIdPrd = $this->product->getById($id);
+        \Cart::add([
+            'id' => $id, // inique row ID
+            'name' => $getByIdPrd->name,
+            'price' => $getByIdPrd->price,
+            'quantity' => 1,
+            'associatedModel' => [$getByIdPrd]
+        ]);
+        return back();
     }
 
     /**
@@ -50,7 +90,6 @@ class CartClientController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -59,10 +98,7 @@ class CartClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+  
 
     /**
      * Update the specified resource in storage.
@@ -73,7 +109,17 @@ class CartClientController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $userId = Auth::user();
+        if ($request->quantity === '0') {
+            \Cart::remove($id);
+            return redirect()->route('client.cart');
+        } else {
+            \Cart::update($id, ['quantity' => array(
+                'relative' => false,
+                'value' => $request->quantity
+            )]);
+            return redirect()->route('client.cart');
+        }
     }
 
     /**
@@ -84,6 +130,14 @@ class CartClientController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $userId = Auth::user();
+        \Cart::remove($id);
+        return redirect()->route('client.cart');
+    }
+    public function destroyAll()
+    {
+        $userId = Auth::user();
+        \Cart::clear();
+        return redirect()->route('client.cart');
     }
 }

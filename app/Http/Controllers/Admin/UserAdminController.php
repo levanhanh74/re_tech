@@ -1,13 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Client;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-
+use App\Http\Services\TB_USER_SERVICE;
 use Illuminate\Http\Request;
 
-class HomeClientController extends Controller
+class UserAdminController extends Controller
 {
+    protected $user;
+    public function __construct(TB_USER_SERVICE $user)
+    {
+        $this->middleware('AuthAdmin');
+        $this->user = $user;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,8 @@ class HomeClientController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $getAll = $this->user->getAll();
+        return view('PageAdmin.userAdmin', compact('getAll'));
     }
 
     /**
@@ -25,12 +32,7 @@ class HomeClientController extends Controller
      */
     public function create()
     {
-        return view('register');
-    }
-    
-    public function createLogin()
-    {
-        return view('login');
+        //
     }
 
     /**
@@ -63,7 +65,8 @@ class HomeClientController extends Controller
      */
     public function edit($id)
     {
-        //
+        $getById = $this->user->getById($id);
+        return view('PageAdmin.editUserAdmin', compact("getById"));
     }
 
     /**

@@ -13,7 +13,7 @@ class tb_user extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,11 +25,11 @@ class tb_user extends FormRequest
     {
         return [
             'name' => "required|string|max:255",
-            'email' => "required|email|unique:email",
+            'email' => "required|email|unique:tb_users,email,{$this->id}",
             'password' => "required|string|min:6",
         ];
     }
-    public function message()
+    public function messages()
     {
         return [
             'required' => "You need enter attribute :attribute",

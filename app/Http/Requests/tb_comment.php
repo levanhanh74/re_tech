@@ -13,7 +13,7 @@ class tb_comment extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,13 +24,12 @@ class tb_comment extends FormRequest
     public function rules()
     {
         return [
-            'name' => "required|string|max:255",
-            'email' => "required|email|unique:email",
-            'email' => "required|string|min:6",
-            'comment' => "required|string|min:6",
+            'name' => "required|max:255",
+            'email' => "required|email|unique:tb_comment,email,{$this->id}",
+            'comments' => "required|min:6",
         ];
     }
-    function message()
+    function messages()
     {
         return [
             'required' => "You need enter attribute :attribute",

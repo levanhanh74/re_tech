@@ -18,26 +18,22 @@ class tb_comments
     }
     public function getById($id)
     {
-        return $this->tb_comment->where('id', $id)->get();
+        return $this->tb_comment->findOrFail($id);
     }
     public function save($data)
     {
-        $post = new $this->tb_comment;
-        $post = $data;
-        $post->save();
-        return $post->fresh();
+        return $this->tb_comment->create($data);
     }
     public function update($id, $data)
     {
-        $post = $this->tb_comment->find($id);
-        $post = $data;
-        $post->update();
-        return $post;
+        $comment  = $this->getById($id);
+        $comment->update($data);
+        return $comment;
     }
     public function delete($id)
     {
-        $post  = $this->tb_comment->find($id);
-        $post->delete();
-        return $post;
+        $comment  = $this->getById($id);
+        $comment->delete();
+        return $comment;
     }
 }

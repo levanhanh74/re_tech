@@ -13,7 +13,7 @@ class tb_category extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,14 +24,14 @@ class tb_category extends FormRequest
     public function rules()
     {
         return [
-            'name' => "require|string|unique:name|min"
+            'name' => "required|string|min:2|unique:tb_category,name,{$this->id}",
         ];
     }
-    public function message()
+    public function messages()
     {
         return [
             'required' => "You need enter attribute :attribute",
-            'unique' => "Your email already exist. Please try?",
+            'unique' => "Your :attribute already exist. Please try?",
             'min' => "The attribute :attribute enter min :min character!",
         ];
     }

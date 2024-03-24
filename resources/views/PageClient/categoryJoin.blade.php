@@ -1,8 +1,7 @@
 @extends('LayoutClient.index')
 @section('title')
-    Home
+    Category
 @endsection
-
 @section('contents')
     <div class="container">
         <div class="row row-cols-2 ">
@@ -62,41 +61,25 @@
                 {{-- end carousel by slider --}}
 
                 {{-- begin Product feauted --}}
-
-                <div class="container mt-5">
+                {{-- <div class="container mt-5">
                     <h5>SẢN PHẨM NỔI BẬT</h5>
                     <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-xs-2 row-cols-xl-4">
                         @if (isset($featureAll))
                             @foreach ($featureAll as $item)
                                 <div class="col g-1">
-                                    <div class="card" style="max-width: 300px; min-height: 300px;">
-                                        <a href="{{ route('client.productDetail', ['id' => $item->id]) }}"><img
+                                    <div class="card" style="max-width: 300px;">
+                                        <a href="{{ 'client/productDetail/' . $item->id }}"><img
                                                 src="{{ asset('storage/' . $item->image) }}"
-                                                style="width: 100%; max-height: 150px; object-fit: contain"
+                                                style="width: 100%; min-height: 250px; object-fit: cover"
                                                 class="card-img-top" alt="{{ $item->name }}"></a>
                                         <div class="card-body">
                                             <p class="card-text">{{ $item->name }}</p>
-                                        </div>
-                                        <div class="card-body p-1">
-                                            <div class="row">
-                                                <div class="col-5">
-                                                    <form action="{{ route('client.addCart', ['id' => $item->id]) }}"
-                                                        method="post">
-                                                        @csrf
-                                                        <button class="btn btn-primary p-1" type="submit">Add cart</button>
-                                                    </form>
-                                                </div>
-                                                <div class="col-7">
-                                                    <p class="card-text " style="color: #dba624;">
-                                                        {{ number_format($item->price, 3, '.') }} VND</p>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
                         @endif
-                        {{-- <div class="col g-1">
+                        <div class="col g-1">
                             <div class="card" style="max-width: 300px;">
                                 <img src="https://scontent.fdad3-4.fna.fbcdn.net/v/t39.30808-6/430901251_10231273819125687_4867357176627735653_n.jpg?stp=dst-jpg_p526x296&_nc_cat=107&ccb=1-7&_nc_sid=c42490&_nc_ohc=eLzZtmuuWrQAX8KiOJr&_nc_ht=scontent.fdad3-4.fna&oh=00_AfAZABqTaqMwnwRb2NT4VgC5g5laCX6jVz5coP1Ey6BCFg&oe=65E92AE5"
                                     style="width: 100%; min-height: 200px; object-fit: cover" class="card-img-top"
@@ -131,17 +114,18 @@
                                         of the card's content.</p>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
-                </div>
+                </div> --}}
+
                 {{-- end Product feauted --}}
 
                 {{-- begin new producrt  --}}
                 <div class="container mt-5">
                     <h5>SẢN PHẨM MỚI</h5>
                     <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-xs-2 row-cols-xl-4">
-                        @if (isset($prdAll))
-                            @foreach ($prdAll as $item)
+                        @if (isset($cateJoin))
+                            @foreach ($cateJoin as $item)
                                 <div class="col g-1">
                                     <div class="card" style="max-width: 300px; min-height: 300px;">
                                         <a href="{{ route('client.productDetail', ['id' => $item->id]) }}"> <img
@@ -158,8 +142,7 @@
                                                     <form action="{{ route('client.addCart', ['id' => $item->id]) }}"
                                                         method="post">
                                                         @csrf
-                                                        <button class="btn btn-primary p-1" type="submit">Add
-                                                            cart</button>
+                                                        <button class="btn btn-primary p-1" type="submit">Add cart</button>
                                                     </form>
                                                 </div>
                                                 <div class="col-7">

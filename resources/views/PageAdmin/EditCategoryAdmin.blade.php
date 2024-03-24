@@ -11,12 +11,15 @@
                 {{-- begin  admin add category --}}
                 <div class="col-lg-8 col-md-12 col-sm-12 border rounded p-0">
                     <h5 class="bg-primary px-1 text-white rounded" style="height: 50px; line-height: 50px">Edit danh mục</h5>
-                    <form method="post" class="p-3">
+                    <form method="post" action="{{ route('admin.category.update', ['id' => $getById->id]) }}" class="p-3">
                         @csrf
                         <div class="mb-3">
                             <label for="exampleInpu .bordertEmail1" class="form-label">Tên danh mục: </label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                placeholder="Enter Category...">
+                            @if (isset($getById))
+                                <input type="text" class="form-control" id="exampleInputEmail1"
+                                    value="{{ $getById->name }}" name="name" aria-describedby="emailHelp"
+                                    placeholder="Enter Category...">
+                            @endif
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
                         <button type="reset" class="btn btn-primary">Refresh Category</button>

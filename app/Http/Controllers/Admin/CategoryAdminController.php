@@ -3,18 +3,28 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\tb_category;
+use App\Http\Services\TB_CATEGORY_SERVICE;
 use Illuminate\Http\Request;
 
 class CategoryAdminController extends Controller
 {
+    protected $category;
+
+    public function __construct(TB_CATEGORY_SERVICE $category,)
+    {
+        $this->category = $category;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        return view('PageAdmin.categoryAdmin');
+        $cateAll  = $this->category->getAll();
+        return view('PageAdmin.categoryAdmin', compact('cateAll'));
     }
 
     /**
@@ -22,9 +32,15 @@ class CategoryAdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request, tb_category $validation)
     {
-        //
+        $data = [
+            'name' => $request->name
+        ];;
+        $validation->validated();
+        $this->category->save($data);
+
+        return back()->with("messages", "Add success category");
     }
 
     /**
@@ -55,9 +71,10 @@ class CategoryAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit($id)
     {
-        return view('PageAdmin.EditCategoryAdmin');
+        $getById = $this->category->getById($id);
+        return view('PageAdmin.EditCategoryAdmin', compact('getById'));
     }
 
     /**
@@ -67,9 +84,12 @@ class CategoryAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,  tb_category $validation)
     {
-        //
+        $data = ['name' => $request->name];
+        $validation->validated();
+        $this->category->update($request->id, $data);
+        return redirect()->route('admin.category.home')->with('messages', "update success category!");
     }
 
     /**
@@ -80,6 +100,7 @@ class CategoryAdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->category->delete($id);
+        return back()->with('messages', "Delete success!");
     }
 }

@@ -7,37 +7,38 @@ use App\Models\tb_product;
 class tb_products
 {
     protected $tb_product;
-    public function __construct(tb_product $product)
+
+    public function __construct(tb_product $tb_product)
     {
-        $this->tb_product = $product;
+        $this->tb_product = $tb_product;
     }
 
     public function getAll()
     {
         return $this->tb_product->get();
     }
+
     public function getById($id)
     {
-        return $this->tb_product->where('id', $id)->get();
+        return $this->tb_product->findOrFail($id);
     }
+
     public function save($data)
     {
-        $post = new $this->tb_product;
-        $post = $data;
-        $post->save();
-        return $post->fresh();
+        return $this->tb_product->create($data);
     }
+
     public function update($id, $data)
     {
-        $post = $this->tb_product->find($id);
-        $post = $data;
-        $post->update();
-        return $post;
+        $product = $this->getById($id);
+        $product->update($data);
+        return $product;
     }
+
     public function delete($id)
     {
-        $post  = $this->tb_product->find($id);
-        $post->delete();
-        return $post;
+        $product = $this->getById($id);
+        $product->delete();
+        return $product;
     }
 }

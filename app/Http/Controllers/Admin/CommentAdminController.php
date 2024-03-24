@@ -3,10 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\tb_comment;
+use App\Http\Services\TB_COMMENT_SERVICE;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class CommentAdminController extends Controller
 {
+    protected $comment;
+    public function __construct(TB_COMMENT_SERVICE $comment)
+    {
+        $this->middleware('AuthAdmin');
+        $this->comment = $comment;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,8 @@ class CommentAdminController extends Controller
      */
     public function index()
     {
-        return view('PageAdmin.commentAdmin');
+        $commentAll = $this->comment->getAll();
+        return view('PageAdmin.commentAdmin', compact('commentAll'));
     }
 
     /**
@@ -55,9 +65,10 @@ class CommentAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request)
+    public function edit($id)
     {
-        return view('PageAdmin.EditCommentAdmin');
+        $getById = $this->comment->getById($id);
+        return view('PageAdmin.EditCommentAdmin', compact("getById"));
     }
 
     /**
@@ -67,9 +78,17 @@ class CommentAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, tb_comment $validation)
     {
-        //
+        $data = [
+            'email' => $request->email,
+            'name' => $request->name,
+            'comments' => $request->comments,
+        ];
+        $id = $request->id;
+        $validation->validated();
+        $this->comment->update($id, $data);
+        return redirect()->route("admin.comment.home")->with("messages", "update success comment!");
     }
 
     /**
@@ -80,6 +99,7 @@ class CommentAdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->comment->delete($id);
+        return back()->with('messages', "Delete success comment!");
     }
 }

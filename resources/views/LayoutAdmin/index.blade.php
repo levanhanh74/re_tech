@@ -26,9 +26,18 @@
         <div class="col-3 border-bottom-1 border-top-1">
             <div class="col-3 px-lg-4 px-md-0 p-sm-0 pt-3">
                 <nav class="nav flex-column">
-                    <a class="nav-link " aria-current="page" href="#">Active</a>
-                    <a class="nav-link " href="#">Link</a>
-                    <a class="nav-link " href="#">Link</a>
+                    <a class="nav-link text-uppercase" href="{{ route('admin.home') }}">Home</a>
+                    <hr>
+                    <a class="nav-link text-uppercase" href="{{ route('admin.category.home') }}">Category</a>
+                    <hr>
+                    <a class="nav-link text-uppercase" href="{{ route('admin.product.home') }}">Product</a>
+                    <hr>
+                    <a class="nav-link text-uppercase" href="{{ route('admin.comment.home') }}">Comment</a>
+                    <hr>
+                    <a class="nav-link text-uppercase" href="">CheckCart</a>
+                    <hr>
+                    <a class="nav-link text-uppercase" href="{{ route('admin.user.home') }}">User</a>
+                    <hr>
                 </nav>
             </div>
         </div>
@@ -48,6 +57,7 @@
     <script src="{{ asset('assets/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js') }}"></script>
 
     <script src="//cdn.ckeditor.com/4.24.0-lts/full/ckeditor.js"></script>
+    @yield('script')
 </body>
 
 </html>

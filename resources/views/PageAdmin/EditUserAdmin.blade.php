@@ -9,9 +9,9 @@
             <div class="row row-cols-lg-2 row-cols-md-2 row-cols-sm-1">
                 {{-- begin  admin add category --}}
                 <div class="col-lg-8 col-md-12 col-sm-12 border rounded p-0">
-                    <h5 class="bg-primary px-1 text-white rounded" style="height: 50px; line-height: 50px">Edit comment</h5>
+                    <h5 class="bg-primary px-1 text-white rounded" style="height: 50px; line-height: 50px">Edit user</h5>
                     @if (isset($getById))
-                        <form method="post" class="p-3" action="{{ route('admin.comment.update', ['id' => $getById->id]) }}">
+                        <form method="post" class="p-3" action="{{ route('admin.user.update', ['id' => $getById->id]) }}">
                             @csrf
                             <div class="mb-3">
                                 <label for="exampleInput1" class="form-label">Email: </label>
@@ -30,14 +30,15 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label for="exampleInput3" class="form-label">Bình luận: </label>
-                                <textarea class="form-control" name="comments" id="exampleInput3"> {{ $getById->comments }}</textarea>
-                                @error('comments')
+                                <label for="exampleInput3" class="form-label">Password: </label>
+                                <input type="text" class="form-control" name="password" id="exampleInput3">
+                                {{ $getById->comments }}</input>
+                                @error('password')
                                     <small class="fst-normal fst-italic text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                             <button type="submit" class="btn btn-primary">Update</button>
-                            <a href="{{ route('admin.comment.home') }}" class="btn btn-primary">Thoát</a>
+                            <a href="{{ route('admin.user.home') }}" class="btn btn-primary">Thoát</a>
                         </form>
                     @endif
                 </div>

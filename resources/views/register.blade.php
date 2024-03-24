@@ -27,26 +27,42 @@
                 </div>
                 <div class="col-8">
                     <h3>Register User</h3>
-                    <form method="POST" class='p-5'>
+                    <form method="post" class='p-5'>
+                        @csrf
                         <div class="mb-3">
                             <label for="exampleInputEmail12" class="form-label">Name</label>
-                            <input type="email" class="form-control" id="exampleInputEmail12"
-                                placeholder="Nhập tên vào..." aria-describedby="emailHelp">
+                            <input type="text" class="form-control" id="exampleInputEmail12" name="name"
+                                value="{{ old('name') }}" placeholder="Nhập tên vào..." aria-describedby="emailHelp">
+                            @error('name')
+                                <span class="text-danger fw-light fs-6">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                placeholder="Nhập email vào..." aria-describedby="emailHelp">
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="email"
+                                value="{{ old('email') }}" placeholder="Nhập email vào..."
+                                aria-describedby="emailHelp">
+                            @error('email')
+                                <span class="text-danger fw-light fs-6">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Password</label>
                             <input type="password" class="form-control" placeholder="Nhập password vào..."
-                                id="exampleInputPassword1">
+                                value="{{ old('password') }}" name="password" id="exampleInputPassword1">
+                            @error('password')
+                                <span class="text-danger fw-light fs-6">
+                                    {{ $message }}
+                                </span>
+                            @enderror
                         </div>
-                        @csrf
                         <button type="submit" class="btn btn-primary">Register</button>
-                        <span class="px-3">Bạn đã có tài khoản:<a href=""> Login</a> </span>
-                        <span class="px-3">Về trang chủ:<a href=""> Home</a> </span>
+                        <span class="px-3">Bạn đã có tài khoản:<a href="{{ route('login') }}"> Login</a> </span>
+                        <span class="px-3">Về trang chủ:<a href="{{ route('home') }}"> Home</a> </span>
                     </form>
                 </div>
             </div>

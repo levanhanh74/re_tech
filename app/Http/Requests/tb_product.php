@@ -13,7 +13,7 @@ class tb_product extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,20 +24,20 @@ class tb_product extends FormRequest
     public function rules()
     {
         return [
-            'name' => "required|string|min:6|unique",
+            'name' => "required|string|min:6|unique:tb_product,name,{$this->id}",
             'price' => "required|numeric",
             'warranty' => "required|string|min:2",
-            'image' => "required|string:min:2",
+            'image' => "required|image|min:2",
             'accessories' => "required|string|min:2",
-            'condition' => "required|string|min:2",
+            'condition' => "required|string|min:1",
             'status' => "required|numeric",
             'promotion' => "required|string|min:1",
             'description' => "required|string|min:5",
-            'feature' => "required|numeric|",
-            'id_category' => "required",
+            'feature' => "required",
+            'id_category' => "required|numeric",
         ];
     }
-    public function message()
+    public function messages()
     {
         return [
             'required' => "You need enter attribute :attribute",

@@ -19,12 +19,12 @@ class tb_product extends Seeder
         $data = [
             [
                 'id' => 1,
-                'name' => fake()->randomLetter,
+                'name' => fake()->name,
                 'price' => fake()->numberBetween($min = 1, $max = 1090),
-                'warranty' => fake()->randomLetter,
+                'warranty' => fake()->name,
                 'image' => fake()->image(
                     dir: storage_path('app/public'),
-                    fullPath: true
+                    fullPath: false
                 ),
                 'accessories' => fake()->name,
                 'condition' => fake()->numberBetween($min = 1, $max = 2),
@@ -38,12 +38,12 @@ class tb_product extends Seeder
             ],
             [
                 'id' => 2,
-                'name' => fake()->randomLetter,
+                'name' => fake()->name,
                 'price' => fake()->numberBetween($min = 1, $max = 1090),
-                'warranty' => fake()->randomLetter,
+                'warranty' => fake()->name,
                 'image' => fake()->image(
                     dir: storage_path('app/public'),
-                    fullPath: true
+                    fullPath: false
                 ),
                 'accessories' => fake()->name,
                 'condition' => fake()->numberBetween($min = 1, $max = 2),
@@ -57,12 +57,12 @@ class tb_product extends Seeder
             ],
             [
                 'id' => 3,
-                'name' => fake()->randomLetter,
+                'name' => fake()->name,
                 'price' => fake()->numberBetween($min = 1, $max = 1090),
-                'warranty' => fake()->randomLetter,
+                'warranty' => fake()->name,
                 'image' => fake()->image(
                     dir: storage_path('app/public'),
-                    fullPath: true
+                    fullPath: false
                 ),
                 'accessories' => fake()->name,
                 'condition' => fake()->numberBetween($min = 1, $max = 2),
@@ -76,12 +76,69 @@ class tb_product extends Seeder
             ],
             [
                 'id' => 4,
-                'name' => fake()->randomLetter,
+                'name' => fake()->name,
                 'price' => fake()->numberBetween($min = 1, $max = 1090),
-                'warranty' => fake()->randomLetter,
+                'warranty' => fake()->name,
                 'image' => fake()->image(
                     dir: storage_path('app/public'),
-                    fullPath: true
+                    fullPath: false
+                ),
+                'accessories' => fake()->name,
+                'condition' => fake()->numberBetween($min = 1, $max = 2),
+                'status' => fake()->numberBetween($min = 1, $max = 2),
+                'promotion' => '12 tháng',
+                'description' => fake()->sentence,
+                'feature' => fake()->numberBetween($min = 1, $max = 2),
+                'id_category' => 4,
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s"),
+            ],
+            [
+                'id' => 5,
+                'name' => fake()->name,
+                'price' => fake()->numberBetween($min = 1, $max = 1090),
+                'warranty' => fake()->name,
+                'image' => fake()->image(
+                    dir: storage_path('app/public'),
+                    fullPath: false
+                ),
+                'accessories' => fake()->name,
+                'condition' => fake()->numberBetween($min = 1, $max = 2),
+                'status' => fake()->numberBetween($min = 1, $max = 2),
+                'promotion' => '12 tháng',
+                'description' => fake()->sentence,
+                'feature' => fake()->numberBetween($min = 1, $max = 2),
+                'id_category' => 4,
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s"),
+            ],
+            [
+                'id' => 6,
+                'name' => fake()->name,
+                'price' => fake()->numberBetween($min = 1, $max = 1090),
+                'warranty' => fake()->name,
+                'image' => fake()->image(
+                    dir: storage_path('app/public'),
+                    fullPath: false
+                ),
+                'accessories' => fake()->name,
+                'condition' => fake()->numberBetween($min = 1, $max = 2),
+                'status' => fake()->numberBetween($min = 1, $max = 2),
+                'promotion' => '12 tháng',
+                'description' => fake()->sentence,
+                'feature' => fake()->numberBetween($min = 1, $max = 2),
+                'id_category' => 4,
+                'created_at' => date("Y-m-d H:i:s"),
+                'updated_at' => date("Y-m-d H:i:s"),
+            ],
+            [
+                'id' => 7,
+                'name' => fake()->name,
+                'price' => fake()->numberBetween($min = 1, $max = 1090),
+                'warranty' => fake()->name,
+                'image' => fake()->image(
+                    dir: storage_path('app/public'),
+                    fullPath: false
                 ),
                 'accessories' => fake()->name,
                 'condition' => fake()->numberBetween($min = 1, $max = 2),

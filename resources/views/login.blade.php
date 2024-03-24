@@ -27,21 +27,37 @@
                 </div>
                 <div class="col-8">
                     <h3>Login User</h3>
-                    <form method="POST" class='p-5'>
+                    @if (session('messages'))
+                        <p class="text-success text-center">{{ session('messages') }}</p>
+                    @endif
+                    <form method="post" class='p-5'>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
+                            <input type="text" class="form-control" id="exampleInputEmail1" name="email"
+                                value="{{ isset($data['email']) ? $data['email'] : '' }}"
                                 placeholder="Nhập email vào..." aria-describedby="emailHelp">
+                            @error('email')
+                                <p class="text-danger fw-light fs-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">Password</label>
                             <input type="password" class="form-control" placeholder="Nhập password vào..."
+                                value="{{ isset($data['password']) ? $data['password'] : '' }}" name="password"
                                 id="exampleInputPassword1">
+                            @error('password')
+                                <p class="text-danger fw-light fs-5">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         @csrf
                         <button type="submit" class="btn btn-primary">Login</button>
-                        <span class="px-3">Bạn chưa có tài khoản:<a href=""> Register</a> </span>
-                        <span class="px-3">Về trang chủ:<a href=""> Home</a> </span>
+                        <span class="px-3">Bạn chưa có tài khoản:<a href="{{ route('register') }}"> Register</a>
+                        </span>
+                        <span class="px-3">Về trang chủ:<a href="{{ route('home') }}"> Home</a> </span>
                     </form>
                 </div>
             </div>

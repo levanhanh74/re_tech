@@ -18,26 +18,23 @@ class tb_checkout_carts
     }
     public function getById($id)
     {
-        return $this->tb_checkOutCart->where('id', $id)->get();
+        return $this->tb_checkOutCart->findOrFail($id);
     }
     public function save($data)
     {
-        $post = new $this->tb_checkOutCart;
-        $post = $data;
-        $post->save();
-        return $post->fresh();
+
+        return $this->tb_checkOutCart->create($data);
     }
     public function update($id, $data)
     {
-        $post = $this->tb_checkOutCart->find($id);
-        $post = $data;
-        $post->update();
-        return $post;
+        $checkOutCart = $this->getById($id);
+        $checkOutCart->update($data);
+        return $checkOutCart;
     }
     public function delete($id)
     {
-        $post  = $this->tb_checkOutCart->find($id);
-        $post->delete();
-        return $post;
+        $checkOutCart = $this->getById($id);
+        $checkOutCart->delete();
+        return $checkOutCart;
     }
 }

@@ -35,6 +35,7 @@ class tb_checkout_cart extends Seeder
                 'id_product' => 1,
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
+                'array_item' => ''
             ],
             [
                 'id' => 2,
@@ -55,6 +56,7 @@ class tb_checkout_cart extends Seeder
                 'id_product' => 2,
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
+                'array_item' => ''
             ],
             [
                 'id' => 3,
@@ -75,6 +77,7 @@ class tb_checkout_cart extends Seeder
                 'id_product' => 3,
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
+                'array_item' => ''
             ],
             [
                 'id' => 4,
@@ -95,6 +98,7 @@ class tb_checkout_cart extends Seeder
                 'id_product' => 4,
                 'created_at' => date("Y-m-d H:i:s"),
                 'updated_at' => date("Y-m-d H:i:s"),
+                'array_item' => ''
             ],
         ];
         DB::table('tb_checkout_cart')->insert($data);
