@@ -9,7 +9,7 @@
     <div class="container ">
         <div class="border border-primary">
             <h3 class="bg-primary text-white px-2" style="height: 60px; line-height: 60px">Edit sản phẩm</h3>
-            <div class="p-5">
+            <div class="p-3 p-sm-3 p-md-5 p-lg-5 p-xl-5">
                 @if ($errors->any())
                     @foreach ($errors->all() as $item)
                         <small class="fst-normal fst-italic text-danger">{{ $item }}</small>
@@ -132,7 +132,7 @@
                             @enderror
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
-                        <a href="" class="btn btn-primary">Cancel</a>
+                        <a href="{{ route('admin.product.home', ['id' => 1]) }}" class="btn btn-primary">Cancel</a>
                         @csrf
                     </form>
                 @endif

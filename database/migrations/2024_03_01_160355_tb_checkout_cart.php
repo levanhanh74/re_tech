@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('address');
-            $table->tinyInteger('status')->default(1);
+            $table->tinyInteger('status')->default(1); // 2 new confirm
             $table->string('name_product');
             $table->integer('price_product');
             $table->bigInteger('quality_product');

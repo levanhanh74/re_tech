@@ -6,12 +6,14 @@
     <div class="container">
         <div class="row row-cols-2 ">
             {{-- begin navbar --}}
-            <div class="col-3 bg-primary">
-                <nav class="nav flex-column bg-primary p-3">
-                    <h4 class="nav-link text-white p-0" aria-current="page">Danh mục</h4>
+            <div class="col-lg-3 col-xl-3 col-xxl-3 col-md-12 col-sm-12 col-12 bg-primary">
+                <nav class="nav flex-xxl-column flex-sm-row flex-md-row flex-lg-column d-inline  p-3 ">
+                    <h4 class="nav-link text-white p-0 d-sm-none d-md-none d-lg-block d-none d-xl-block" aria-current="page">
+                        Danh mục
+                    </h4>
                     @if (isset($cateAll))
                         @foreach ($cateAll as $item)
-                            <a class="nav-link text-white"
+                            <a class="nav-link  d-inline  d-lg-block d-md-block d-sm-inline text-white"
                                 href="{{ route('client.categoryJoin', ['id' => $item->id]) }}">{{ $item->name }}</a>
                         @endforeach
                     @endif
@@ -19,7 +21,7 @@
             </div>
             {{-- end navbar --}}
 
-            <div class="col-9">
+            <div class="col-lg-9 col-xxl-9 col-xl-9 col-sm-12 col-md-12 col-12">
                 <div class="container mt-5">
                     <h5>Trạng thái Mua hàng</h5>
                     {{-- begin table cart --}}

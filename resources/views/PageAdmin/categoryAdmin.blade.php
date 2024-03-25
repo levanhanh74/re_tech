@@ -7,10 +7,10 @@
             @if (session('messages'))
                 <h6 class="text-success">{{ session('messages') }}</h6>
             @endif
-            <h6></h6>
-            <div class="row row-cols-lg-2 row-cols-md-2 row-cols-sm-1">
+
+            <div class="row row-cols-lg-2 row-cols-md-2 row-cols-sm-1 row-cols-1">
                 {{-- begin  admin add category --}}
-                <div class="col-lg-3 col-md-12 col-sm-12 border rounded p-0">
+                <div class="col-lg-3 col-md-12 col-sm-12 col-12 border rounded p-0 ">
                     <h5 class="bg-primary px-1 text-white rounded" style="height: 50px; line-height: 50px">Thêm danh mục</h5>
                     <form method="post" action="{{ route('admin.category.create') }}" class="p-3">
                         @csrf
@@ -29,7 +29,7 @@
                 {{-- end admin add category --}}
 
                 {{-- begin admin list category --}}
-                <div class="col-lg-9 col-md-12 col-sm-12">
+                <div class="col-lg-9 col-md-12 col-sm-12 col-12 mt-3 mt-sm-3 mt-md-0">
                     <div class="border rounded w-100">
                         <h5 class="bg-primary px-1 text-white rounded" style="height: 50px; line-height: 50px">
                             Danh sách danh mục

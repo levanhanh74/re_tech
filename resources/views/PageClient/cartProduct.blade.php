@@ -6,12 +6,14 @@
     <div class="container">
         <div class="row row-cols-2 ">
             {{-- begin navbar --}}
-            <div class="col-3 bg-primary">
-                <nav class="nav flex-column bg-primary p-3">
-                    <h4 class="nav-link text-white p-0" aria-current="page">Danh mục</h4>
+            <div class="col-lg-3 col-xl-3 col-xxl-3 col-md-12 col-sm-12 col-12 bg-primary">
+                <nav class="nav flex-xxl-column flex-sm-row flex-md-row flex-lg-column d-inline  p-3 ">
+                    <h4 class="nav-link text-white p-0 d-sm-none d-md-none d-lg-block d-none d-xl-block" aria-current="page">
+                        Danh mục
+                    </h4>
                     @if (isset($cateAll))
                         @foreach ($cateAll as $item)
-                            <a class="nav-link text-white"
+                            <a class="nav-link  d-inline  d-lg-block d-md-block d-sm-inline text-white"
                                 href="{{ route('client.categoryJoin', ['id' => $item->id]) }}">{{ $item->name }}</a>
                         @endforeach
                     @endif
@@ -19,7 +21,7 @@
             </div>
             {{-- end navbar --}}
 
-            <div class="col-9">
+            <div class="col-lg-9 col-xxl-9 col-xl-9 col-sm-12 col-md-12 col-12">
                 {{-- begin table cart --}}
                 <div class="container mt-5">
                     <h5>GIỎ HÀNG</h5>
@@ -102,36 +104,20 @@
                             @endforeach
                         @endif
                         <form method="post" action="{{ route('client.paymentVnPay') }}">
-                            {{-- @if (\Cart::getContent() != null && \Cart::getContent()->count() > 0) --}}
-                            @foreach (\Cart::getContent() as $item)
-                                <input type="hidden" name="id" value="{{ $item->associatedModel[0]->id }}">
-                                <input type="hidden" name="name" value="{{ $item->associatedModel[0]->name }}">
-                                <input type="hidden" name="price_product" value="{{ $item->associatedModel[0]->price }}">
-                                <input type="hidden" name="warranty" value="{{ $item->associatedModel[0]->warranty }}">
-                                <input type="hidden" name="image_product" value="{{ $item->associatedModel[0]->image }}">
-                                <input type="hidden" name="accessories"
-                                    value="{{ $item->associatedModel[0]->accessories }}">
-                                <input type="hidden" name="condition" value="{{ $item->associatedModel[0]->condition }}">
-                                <input type="hidden" name="status" value="{{ $item->associatedModel[0]->status }}">
-                                <input type="hidden" name="promotion" value="{{ $item->associatedModel[0]->promotion }}">
-                                <input type="hidden" name="description"
-                                    value="{{ $item->associatedModel[0]->description }}">
-                                <input type="hidden" name="feature" value="{{ $item->associatedModel[0]->feature }}">
-                                <input type="hidden" name="id_category"
-                                    value="{{ $item->associatedModel[0]->id_category }}">
-                            @endforeach
-                            {{-- @endif --}}
-                            <input type="hidden" name="email" value="{{ $item->associatedModel[0]->email }}">
-                            <input type="hidden" name="phone" value="{{ $item->associatedModel[0]->phone }}">
-                            <input type="hidden" name="name_product"
-                                value="{{ $item->associatedModel[0]->name_product }}">
-                            <input type="hidden" name="quality_product"
-                                value="{{ $item->associatedModel[0]->quality_product }}">
-                            <input type="hidden" name="total_product"
-                                value="{{ $item->associatedModel[0]->total_product }}">
-                            <input type="hidden" name="id_user" value="{{ $item->associatedModel[0]->id_user }}">
-                            <input type="hidden" name="id_product" value="{{ $item->associatedModel[0]->id_product }}">
-                            <input type="hidden" name="address" value="{{ $item->associatedModel[0]->address }}">
+                            @if (\Cart::getContent() != null)
+                                @foreach (\Cart::getContent() as $item)
+                                    {{-- @dd($item) --}}
+                                    <input type="hidden" name="id" value="{{ $item->id }}">
+                                    <input type="hidden" name="name_product" value="{{ $item->name }}">
+                                    <input type="hidden" name="price_product" value="{{ $item->price }}">
+                                    <input type="hidden" name="status" value="1">
+                                    <input type="hidden" name="image_product"
+                                        value="{{ $item->associatedModel[0]->image }}">
+                                @endforeach
+                            @endif
+                            <input type="hidden" name="quality_product" value="{{ \Cart::getTotalQuantity() }}">
+                            <input type="hidden" name="total_product" value="{{ \Cart::getContent()->count() }}">
+                            <input type="hidden" name="total_price" value="{{ \Cart::getSubTotalWithoutConditions() }}">
                             @csrf
                             <div class="mb-3">
                                 <label for="exampleFormControlInput1" class="form-label">Email address</label>
@@ -165,7 +151,8 @@
                                     <small class="fst-normal fst-italic text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn bg-primary btn-block w-100 text-white">Thanh Toán</button>
+                            <button type="submit" class="btn bg-primary btn-block w-100 text-white">Thanh
+                                Toán</button>
                         </form>
                     </div>
                     {{-- end comfirm order --}}

@@ -9,7 +9,7 @@
     <div class="container ">
         <div class="border border-primary">
             <h3 class="bg-primary text-white px-2" style="height: 60px; line-height: 60px">Thêm sản phẩm</h3>
-            <div class="p-5">
+            <div class="p-3 p-sm-3 p-md-5 p-lg-5 p-xl-5">
                 <form method="post" action="{{ route('admin.product.post') }}" enctype="multipart/form-data">
 
                     <div class="mb-3">
@@ -127,7 +127,7 @@
                         @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <a href="" class="btn btn-primary">Cancel</a>
+                    <a href="{{ route('admin.product.home') }}" class="btn btn-primary">Cancel</a>
                     @csrf
                 </form>
             </div>

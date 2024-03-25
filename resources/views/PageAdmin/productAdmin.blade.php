@@ -10,8 +10,8 @@
             @if (session('messages'))
                 <p class="text-success">{{ session('messages') }}</p>
             @endif
-            <div class="p-4">
-                <table class="table table-success table-striped ">
+            <div class="p-4 overflow-auto">
+                <table class="table table-success table-striped  ">
                     <tr>
                         <td class="table-primary">ID</td>
                         <td class="table-success">Sản phẩm</td>

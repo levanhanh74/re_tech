@@ -25,6 +25,7 @@ class CartClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // Display in cart
     public function index()
     {
         $getAllCart = \Cart::getContent();
@@ -42,6 +43,7 @@ class CartClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // Add in detail product
     public function create($id)
     {
         $cateAll = $this->category->getAll();
@@ -57,6 +59,7 @@ class CartClientController extends Controller
         ]);
         return redirect()->route("client.cart", compact('cateAll', 'getAllCart'));
     }
+    // Add outside home 
     public function createCart($id)
     {
         $userId = Auth::user();
@@ -98,7 +101,7 @@ class CartClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-  
+
 
     /**
      * Update the specified resource in storage.
@@ -107,6 +110,7 @@ class CartClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // Update in cart
     public function update(Request $request, $id)
     {
         $userId = Auth::user();
@@ -128,12 +132,14 @@ class CartClientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // Remove a item
     public function destroy($id)
     {
         $userId = Auth::user();
         \Cart::remove($id);
         return redirect()->route('client.cart');
     }
+    // remove all item
     public function destroyAll()
     {
         $userId = Auth::user();

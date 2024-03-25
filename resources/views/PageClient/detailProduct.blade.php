@@ -4,14 +4,16 @@
 @endsection
 @section('contents')
     <div class="container">
-        <div class="row row-cols-2 ">
+        <div class="row row-cols-2  ">
             {{-- begin navbar --}}
-            <div class="col-3 bg-primary">
-                <nav class="nav flex-column bg-primary p-3">
-                    <h4 class="nav-link text-white p-0" aria-current="page">Danh mục</h4>
+            <div class="col-lg-3 col-xl-3 col-xxl-3 col-md-12 col-sm-12 col-12 bg-primary">
+                <nav class="nav flex-xxl-column flex-sm-row flex-md-row flex-lg-column d-inline  p-3 ">
+                    <h4 class="nav-link text-white p-0 d-sm-none d-md-none d-lg-block d-none d-xl-block" aria-current="page">
+                        Danh mục
+                    </h4>
                     @if (isset($cateAll))
                         @foreach ($cateAll as $item)
-                            <a class="nav-link text-white"
+                            <a class="nav-link  d-inline  d-lg-block d-md-block d-sm-inline text-white"
                                 href="{{ route('client.categoryJoin', ['id' => $item->id]) }}">{{ $item->name }}</a>
                         @endforeach
                     @endif
@@ -19,19 +21,19 @@
             </div>
             {{-- end navbar --}}
 
-            <div class="col-9">
+            <div class="col-lg-9 col-xxl-9 col-xl-9 col-sm-12 col-md-12 col-12">
 
                 {{-- begin new producrt  --}}
                 <div class="container mt-5">
                     <h5>SẢN PHẨM MỚI</h5>
                     @if (isset($getById))
-                        <div class="row-cols-lg-2 row-cols-md-2 row-cols-sm-2 row-cols-xs-2 row-cols-xl-2 row ">
-                            <div class="col-lg-3 col-md-3 col-sm-3 col">
+                        <div class="row row-cols-lg-2 row-cols-md-2 row-cols-sm-2 row-cols-1 row-cols-xl-2 ">
+                            <div class="col-lg-3 col-md-3 col-sm-12 col-12 ">
                                 <img src="{{ asset('storage/' . $getById->image) }}"
                                     style="width:100%; max-height: 300px; min-height: 200px; object-fit: contain"
                                     alt="{{ $getById->name }}">
                             </div>
-                            <div class="col-lg-9 col-md-9 col-lg-9 col ">
+                            <div class="col-lg-9 col-md-9 col-sm-12 mt-4 m-lg-0 m-sm-3 m-md-0">
                                 <h4 class="mb-4">Giá: <span>{{ $getById->price }}.000 VND</span></h4>
                                 <h6 class="mb-4"> Bảo hành: <span>{{ $getById->warranty }}</span></h6>
                                 <h6 class="mb-4"> Phụ kiện: <span>{{ $getById->accessories }}</span></h6>
@@ -42,7 +44,7 @@
                                 </h6>
                                 <form action="{{ route('client.cartID', ['id' => $getById->id]) }}" method="post">
                                     @csrf
-                                    <button class="btn btn-primary w-100" type="submit">Submit</button>
+                                    <button class="btn btn-primary w-100" type="submit">Thêm vào giỏ hàng</button>
                                 </form>
                             </div>
                         </div>
@@ -51,7 +53,7 @@
                             <p>{{ $getById->description }}</p>
                         </div>
                     @endif
-                    <div class="col-8 mt-5">
+                    <div class="col-12 col-sm-12 col-md-8 col-lg-8 mt-5">
                         <h5>Bình Luận </h5>
                         <form method="post" action="{{ route('client.postComment') }}">
                             @csrf
@@ -73,7 +75,7 @@
                             <input type="hidden" name="id_product_comment" value="{{ $getById->id }}">
                             <button type="submit" class="btn bg-primary btn-block w-100 text-white">Comment</button>
                         </form>
-                        <div class="col-8">
+                        <div class="col-12 col-sm-12 col-md-8 col-lg-8 mt-5">
                             <div class="rounded-bottom-1 mt-4">
                                 @if (isset($comment))
                                     @foreach ($comment as $item)

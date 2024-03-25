@@ -6,7 +6,7 @@
     <div class="container ">
         <div class="border border-primary">
             <h3 class="bg-primary text-white px-2" style="height: 60px; line-height: 60px">Danh sách người dùng</h3>
-            <div class="p-5">
+            <div class="p-5 overflow-auto">
                 <table class="table table-success table-striped ">
                     <tr>
                         <td class="table-primary">ID</td>

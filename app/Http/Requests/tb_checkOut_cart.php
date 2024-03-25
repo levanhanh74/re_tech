@@ -26,15 +26,14 @@ class tb_checkOut_cart extends FormRequest
         return [
             'name' => "required|string|max:255",
             'email' => "required|email",
-            // 'phone' => "required|numeric|min:10",
-            // 'address' => "required|string|min:6",
-            // 'status' => "required|string|min:1",
-            // 'name_product' => "required|string|min:6",
-            // 'price_product' => "required|numeric",
-            // 'quality_product' => "required|numeric|min:1",
-            // 'image_product' => "required|string|min:6",
-            // 'total_product' => "required|numeric",
-            // 'item_array' => "required|string",
+            'phone' => "required|numeric|min:10",
+            'address' => "required|string|min:6",
+            'status' => "required|string|min:1",
+            'name_product' => "required|string|min:6",
+            'price_product' => "required|numeric",
+            'quality_product' => "required|numeric|min:1",
+            'image_product' => "required|string|min:6",
+            'total_product' => "required|numeric",
         ];
     }
     function messages()

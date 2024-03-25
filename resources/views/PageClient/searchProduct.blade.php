@@ -7,12 +7,14 @@
     <div class="container">
         <div class="row row-cols-2 ">
             {{-- begin navbar --}}
-            <div class="col-3 bg-primary">
-                <nav class="nav flex-column bg-primary p-3">
-                    <h4 class="nav-link text-white p-0" aria-current="page">Danh mục</h4>
+            <div class="col-lg-3 col-xl-3 col-xxl-3 col-md-12 col-sm-12 col-12 bg-primary">
+                <nav class="nav flex-xxl-column flex-sm-row flex-md-row flex-lg-column d-inline  p-3 ">
+                    <h4 class="nav-link text-white p-0 d-sm-none d-md-none d-lg-block d-none d-xl-block" aria-current="page">
+                        Danh mục
+                    </h4>
                     @if (isset($cateAll))
                         @foreach ($cateAll as $item)
-                            <a class="nav-link text-white"
+                            <a class="nav-link  d-inline  d-lg-block d-md-block d-sm-inline text-white"
                                 href="{{ route('client.categoryJoin', ['id' => $item->id]) }}">{{ $item->name }}</a>
                         @endforeach
                     @endif
@@ -20,7 +22,7 @@
             </div>
             {{-- end navbar --}}
 
-            <div class="col-9">
+            <div class="col-lg-9 col-xxl-9 col-xl-9 col-sm-12 col-md-12 col-12">
                 {{-- begin carousel by slider --}}
                 <div id="carouselExampleIndicators" class="carousel slide " data-bs-ride="carousel">
                     <div class="carousel-indicators">
@@ -123,11 +125,11 @@
 
                 {{-- begin new producrt  --}}
                 <div class="container mt-5">
-                    <h5 class="text-uppercase">SẢN PHẨM Bạn Muốn Kiếm Có Liên</h5>
-                    <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-xs-2 row-cols-xl-4">
-                        @if (isset($searchFind))
+                    @if (isset($searchFind) && $searchFind->count() > 0)
+                        <h5 class="text-uppercase">SẢN PHẨM Bạn Muốn Kiếm Có Liên</h5>
+                        <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-2 row-cols-xl-4 row-cols-xxl-4">
                             @foreach ($searchFind as $item)
-                                <div class="col g-1">
+                                <div class="col-lg-5 col-md-4 col-sm-4 col-6 col-xl-4 col-xxl-4 g-1">
                                     <div class="card" style="max-width: 300px; min-height: 300px;">
                                         <a href="{{ route('client.productDetail', ['id' => $item->id]) }}"> <img
                                                 src="{{ asset('storage/' . $item->image) }}" class="card-img-top"
@@ -147,8 +149,10 @@
                                     </div>
                                 </div>
                             @endforeach
-                        @endif
-                        {{-- <div class="col g-1">
+                        @else
+                            <h5 class="text-uppercase">SẢN PHẨM NÀY "{{ $keyFind }}" Bạn Muốn Tìm Không Có!</h5>
+                    @endif
+                    {{-- <div class="col g-1">
                             <div class="card" style="max-width: 300px;">
                                 <img src="..." class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -178,10 +182,10 @@
                                 </div>
                             </div>
                         </div> --}}
-                    </div>
                 </div>
-                {{-- end new producrt  --}}
             </div>
+            {{-- end new producrt  --}}
         </div>
+    </div>
     </div>
 @endsection

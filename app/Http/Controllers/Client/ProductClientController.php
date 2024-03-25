@@ -92,7 +92,8 @@ class ProductClientController extends Controller
     {
         $keyFind = $request->search;
         $searchFind = $this->product->searchProduct($keyFind);
-        return view('PageClient.searchProduct', compact('searchFind'));
+        $cateAll = $this->category->getAll();
+        return view('PageClient.searchProduct', compact('searchFind', 'keyFind', "cateAll"));
     }
 
     /**

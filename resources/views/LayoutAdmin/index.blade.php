@@ -23,27 +23,28 @@
     {{-- begin contents --}}
     <div class="row row-cols-2 g-1">
         {{-- begin navbar --}}
-        <div class="col-3 border-bottom-1 border-top-1">
-            <div class="col-3 px-lg-4 px-md-0 p-sm-0 pt-3">
-                <nav class="nav flex-column">
-                    <a class="nav-link text-uppercase" href="{{ route('admin.home') }}">Home</a>
+        <div
+            class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3 border-bottom-1 border-top-1 d-flex justify-content-center">
+            <div class="mt-3 px-lg-4 px-md-0 p-sm-0 pt-0 mt-sm-0 mt-md-3 mt-lg-3 mt-xl-3">
+                <nav class="nav flex-row flex-sm-row flex-md-column flex-lg-column flex-xl-column">
+                    <a class="nav-link d-inline text-uppercase" href="{{ route('admin.home') }}">Home</a>
                     <hr>
-                    <a class="nav-link text-uppercase" href="{{ route('admin.category.home') }}">Category</a>
+                    <a class="nav-link d-inline text-uppercase" href="{{ route('admin.category.home') }}">Category</a>
                     <hr>
-                    <a class="nav-link text-uppercase" href="{{ route('admin.product.home') }}">Product</a>
+                    <a class="nav-link d-inline text-uppercase" href="{{ route('admin.product.home') }}">Product</a>
                     <hr>
-                    <a class="nav-link text-uppercase" href="{{ route('admin.comment.home') }}">Comment</a>
+                    <a class="nav-link d-inline text-uppercase" href="{{ route('admin.comment.home') }}">Comment</a>
                     <hr>
-                    <a class="nav-link text-uppercase" href="">CheckCart</a>
+                    <a class="nav-link d-inline text-uppercase" href="">CheckCart</a>
                     <hr>
-                    <a class="nav-link text-uppercase" href="{{ route('admin.user.home') }}">User</a>
+                    <a class="nav-link d-inline text-uppercase" href="{{ route('admin.user.home') }}">User</a>
                     <hr>
                 </nav>
             </div>
         </div>
         {{-- end navbar --}}
         {{-- begin content admin --}}
-        <div class="col-9">
+        <div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9 p-4 p-sm-4 p-md-0 p-lg-0">
             @yield('contents')
         </div>
         {{-- end content admin --}}

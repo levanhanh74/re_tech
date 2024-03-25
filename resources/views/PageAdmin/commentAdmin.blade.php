@@ -9,7 +9,7 @@
             @if (session('messages'))
                 <p class="text-success">{{ session('messages') }}</p>
             @endif
-            <div class="p-5">
+            <div class="p-5 overflow-auto">
                 <table class="table table-success table-striped ">
                     <tr>
                         <td class="table-success">

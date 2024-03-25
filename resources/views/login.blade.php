@@ -17,20 +17,20 @@
 </head>
 
 <body>
-    <div class="d-flex align-items-center" style="height: 900px">
+    <div class="d-flex align-items-center m-lg-5 m-md-5 m-sm-3 m-1" style="min-height: 600px">
         <div class="container">
-            <div class="row border rounded-1">
-                <div class="col-4 p-0">
+            <div class="row rows-2 rows-sm-2 rows-md-2 rows-lg-2 rows-lg-2 rows-xl-2 row-xll-2 border rounded-1">
+                <div class="col-6 col-sm-4 col-md-4 col-lg-4 col-xl-4 col-xll-6  p-0">
                     <img class="w-100" class="rounded-1"
                         src="https://wallpapers.com/images/high/nice-white-persian-cat-jwch4y5qtj68dl19.webp"
-                        alt="" style="height: 500px; object-fit: cover">
+                        alt="" style="height: 100%; object-fit: cover">
                 </div>
-                <div class="col-8">
+                <div class="col-6 col-sm-8 col-md-8 col-lg-8 col-xl-8 col-xll-6 ">
                     <h3>Login User</h3>
                     @if (session('messages'))
                         <p class="text-success text-center">{{ session('messages') }}</p>
                     @endif
-                    <form method="post" class='p-5'>
+                    <form method="post" class='p-0 p-sm-0 p-md-5 p-lg-5 p-xl-5'>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Email address</label>
                             <input type="text" class="form-control" id="exampleInputEmail1" name="email"
@@ -54,10 +54,14 @@
                             @enderror
                         </div>
                         @csrf
-                        <button type="submit" class="btn btn-primary">Login</button>
-                        <span class="px-3">Bạn chưa có tài khoản:<a href="{{ route('register') }}"> Register</a>
+                        <button type="submit" class="btn btn-primary col-12">Login</button>
+                        <span class="px-3 col-12 text-justify d-block ">Bạn chưa có tài khoản:<a
+                                href="{{ route('register') }}">
+                                Register</a>
                         </span>
-                        <span class="px-3">Về trang chủ:<a href="{{ route('home') }}"> Home</a> </span>
+                        <span class="px-3 col-12 text-justify d-block ">Về trang chủ:<a href="{{ route('home') }}">
+                                Home</a>
+                        </span>
                     </form>
                 </div>
             </div>
